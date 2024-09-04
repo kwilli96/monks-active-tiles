@@ -8915,7 +8915,7 @@ Hooks.on("setupTileActions", (app) => {
                     required: true,
                     defvalue: "",
                     list: () => {
-                        return game.dfreds.effects.all.map((effect) => {
+                        return game.dfreds.effectInterface.findEffects().map((effect) => {
                             return i18n(effect.name);
                         }).sort((a, b) => a.localeCompare(b));
                     },
@@ -8940,7 +8940,7 @@ Hooks.on("setupTileActions", (app) => {
                 const { action } = args;
                 const entities = await MonksActiveTiles.getEntities(args);
 
-                const foundEffect = game.dfreds.effectInterface.findEffectByName(action.data.effect);
+                const foundEffect = game.dfreds.effectInterface.findEffect({effectName:action.data.effect});
 
                 if (entities.length && foundEffect) {
                     if (action.data.state == "toggle")
@@ -8981,7 +8981,7 @@ Hooks.on("setupTileActions", (app) => {
                     required: true,
                     defvalue: "",
                     list: () => {
-                        return game.dfreds.effects.all.map((effect) => {
+                        return game.dfreds.effectInterface.findEffects().map((effect) => {
                             return i18n(effect.name);
                         }).sort((a, b) => a.localeCompare(b));
                     },
